@@ -1,0 +1,34 @@
+﻿@model realtyStore.Models.Realty
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = ViewBag.Realty.Type;
+}
+
+
+<div class="realtyItem">
+    
+    <div class="realtyItem_left">
+        
+        <img src=@ViewBag.Realty.ImgUrl alt="photo" />
+        <p class="realtyItem__title">
+            @ViewBag.Realty.Status
+
+            @if (ViewBag.Realty.NumberRoom != null)
+            {<span>@ViewBag.Realty.NumberRoom -комн. </span>}
+            @ViewBag.Realty.Type, @ViewBag.Realty.Square кв.м., г. @ViewBag.City 
+            @if (@ViewBag.Realty.Floor > 0)
+            {<span> @ViewBag.Realty.Floor /</span>} @ViewBag.Realty.Floors эт.
+
+        </p>
+
+        <p class="realtyItem__desc">@ViewBag.Realty.Description</p>
+
+    </div>
+    <div class="realtyItem_right">
+        <p class="realtyItem__price">@ViewBag.Realty.Price </p>
+        <button id="showPhone">Показать телефон</button>
+        <p id="Phone" style="display:none">@ViewBag.Phone - @ViewBag.Name</p>
+    </div>
+</div>
+
+<script src="@Url.Content("~/Scripts/Flat.js")" type="text/javascript"></script>

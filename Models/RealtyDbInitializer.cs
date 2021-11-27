@@ -1,0 +1,34 @@
+﻿using System.Data.Entity;
+
+namespace realtyStore.Models
+{
+    public class RealtyDbInitializer : DropCreateDatabaseAlways<RealtyContext>
+    {
+        protected override void Seed(RealtyContext db)
+        {
+            const string imgUrl = "https://thenationalpilot.ng/wp-content/uploads/2017/07/small-add-placeholder.png";
+
+            db.Cities.Add(new City { Name = "Москва" });
+            db.Cities.Add(new City { Name = "Белгород" });
+            db.Cities.Add(new City { Name = "Воронеж" });
+
+            db.Realtors.Add(new Realtor { LastName = "Иванов", FirstName = "Иван", Patronymic = "Петрович", Phone = "89999999999", Passport = "1413 222222", CityId = 1, Address = "" });
+            db.Realtors.Add(new Realtor { LastName = "Козлицина", FirstName = "Анна", Patronymic =  "Владимировна", Phone = "89203333333", Passport = "1413 666666", CityId = 3, Address = "" });
+            db.Realtors.Add(new Realtor { LastName = "Суслов", FirstName = "Дмитрий", Patronymic = "Павлович", Phone = "89610000000", Passport = "1420 777777", CityId = 2, Address = "" });
+
+            db.Owners.Add(new Owner { LastName = "Яковлева", FirstName = "Айлин", Patronymic = "Дмитриевна", Phone = "895102345612", Passport = "1420 777799", CityId = 2, Address = "" });
+            db.Owners.Add(new Owner { LastName = "Кошелев", FirstName = "Демид", Patronymic = "Матвеевич", Phone = "89997777777", Passport = "1418 774577", CityId = 3, Address = "" });
+            db.Owners.Add(new Owner { LastName = "Игнатов", FirstName = "Андрей", Patronymic = "Давидович", Phone = "89301234567", Passport = "1415 713757", CityId = 1, Address = "" });
+
+            db.Realties.Add(new Realty { ImgUrl = imgUrl, Floors = 10, Type = Types.APARTMENT, NumberRoom = 1, Square = 34, Floor = 2, Status = Statuses.RENT_OUT, CityId = 1, Address = "", OwnerId = 3, Price = 12000, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus iaculis facilisis. Ut mollis libero magna, ut dapibus mi eleifend sit amet. Nam lacinia sodales tellus, vel tristique nisi auctor quis. Nulla congue mauris ac accumsan laoreet. Proin ac dui in ligula commodo facilisis. Integer pretium velit sollicitudin luctus interdum. Nam ac dui at risus posuere fringilla. Donec ac lacus ligula. Duis blandit lacus et leo euismod gravida. Aliquam leo enim, fermentum vitae felis quis, rutrum fringilla nisl. Aliquam erat volutpat. Nullam mattis magna magna, et fermentum odio imperdiet sed." });
+            db.Realties.Add(new Realty { ImgUrl = imgUrl, Floors = 10, Type = Types.APARTMENT, NumberRoom = 3, Square = 70, Floor = 5, Status = Statuses.RENT_OUT, CityId = 1, Address = "", OwnerId = 3, Price = 30000, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus iaculis facilisis. Ut mollis libero magna, ut dapibus mi eleifend sit amet. Nam lacinia sodales tellus, vel tristique nisi auctor quis. Nulla congue mauris ac accumsan laoreet. Proin ac dui in ligula commodo facilisis. Integer pretium velit sollicitudin luctus interdum. Nam ac dui at risus posuere fringilla. Donec ac lacus ligula. Duis blandit lacus et leo euismod gravida. Aliquam leo enim, fermentum vitae felis quis, rutrum fringilla nisl. Aliquam erat volutpat. Nullam mattis magna magna, et fermentum odio imperdiet sed." });
+            db.Realties.Add(new Realty { ImgUrl = imgUrl, Floors = 12, Type = Types.APARTMENT, NumberRoom = 2, Square = 55, Floor = 7, Status = Statuses.RENT_OUT, CityId = 1, Address = "", OwnerId = 1, Price = 3000000, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus iaculis facilisis. Ut mollis libero magna, ut dapibus mi eleifend sit amet. Nam lacinia sodales tellus, vel tristique nisi auctor quis. Nulla congue mauris ac accumsan laoreet. Proin ac dui in ligula commodo facilisis. Integer pretium velit sollicitudin luctus interdum. Nam ac dui at risus posuere fringilla. Donec ac lacus ligula. Duis blandit lacus et leo euismod gravida. Aliquam leo enim, fermentum vitae felis quis, rutrum fringilla nisl. Aliquam erat volutpat. Nullam mattis magna magna, et fermentum odio imperdiet sed." });
+            db.Realties.Add(new Realty { ImgUrl = imgUrl, Floors = 2, Type = Types.HOUSE, NumberRoom = 5, Square = 102, Status = Statuses.RENT_OUT, CityId = 1, Address = "", OwnerId = 2, Price = 50000, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus iaculis facilisis. Ut mollis libero magna, ut dapibus mi eleifend sit amet. Nam lacinia sodales tellus, vel tristique nisi auctor quis. Nulla congue mauris ac accumsan laoreet. Proin ac dui in ligula commodo facilisis. Integer pretium velit sollicitudin luctus interdum. Nam ac dui at risus posuere fringilla. Donec ac lacus ligula. Duis blandit lacus et leo euismod gravida. Aliquam leo enim, fermentum vitae felis quis, rutrum fringilla nisl. Aliquam erat volutpat. Nullam mattis magna magna, et fermentum odio imperdiet sed." });
+            db.Realties.Add(new Realty { ImgUrl = imgUrl, Floors = 1, Type = Types.WAREHOUSE, Square = 100, Floor = 1, Status = Statuses.RENT_OUT, CityId = 1, Address = "", OwnerId = 1, Price = 30000, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus iaculis facilisis. Ut mollis libero magna, ut dapibus mi eleifend sit amet. Nam lacinia sodales tellus, vel tristique nisi auctor quis. Nulla congue mauris ac accumsan laoreet. Proin ac dui in ligula commodo facilisis. Integer pretium velit sollicitudin luctus interdum. Nam ac dui at risus posuere fringilla. Donec ac lacus ligula. Duis blandit lacus et leo euismod gravida. Aliquam leo enim, fermentum vitae felis quis, rutrum fringilla nisl. Aliquam erat volutpat. Nullam mattis magna magna, et fermentum odio imperdiet sed." });
+            db.Realties.Add(new Realty { ImgUrl = imgUrl, Floors = 10, Type = Types.ROOM, Square = 15, Floor = 10, Status = Statuses.RENT_OUT, CityId = 1, Address = "", OwnerId = 1, Price = 5000, Description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rhoncus iaculis facilisis. Ut mollis libero magna, ut dapibus mi eleifend sit amet. Nam lacinia sodales tellus, vel tristique nisi auctor quis. Nulla congue mauris ac accumsan laoreet. Proin ac dui in ligula commodo facilisis. Integer pretium velit sollicitudin luctus interdum. Nam ac dui at risus posuere fringilla. Donec ac lacus ligula. Duis blandit lacus et leo euismod gravida. Aliquam leo enim, fermentum vitae felis quis, rutrum fringilla nisl. Aliquam erat volutpat. Nullam mattis magna magna, et fermentum odio imperdiet sed." });
+
+            base.Seed(db);
+        }
+    }
+
+}
