@@ -1,0 +1,107 @@
+﻿
+@{
+    Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml"; 
+    ViewBag.Title = "Сделки";
+}
+
+
+    <p> @ViewBag.TableNameSold</p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Стоимость, руб</th>
+                <th scope="col">Покупатель</th>
+                <th scope="col">Продавец</th>
+                <th scope="col">Риэлтор</th>
+                <th scope="col">Дата сделки</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.TableSold == null || ViewBag.SoldCount == 0)
+            {
+                <tr>
+                    <th colspan="8">Нет данных</th>
+                </tr>
+            } else
+            {
+
+                foreach (var s in ViewBag.TableSold)
+                {
+                    <tr>
+                        <th scope="row">@s.Id</th>
+                        <th scope="row">@s.RealtyType</th>
+                        <th scope="row">@s.Address</th>
+                        <th scope="row">@s.Price</th>
+                        <th scope="row"><a href="/RealtorMode/Owner/@s.NewOwnerId">@s.NewOwnerId</a></th>
+                        <th scope="row"><a href="/RealtorMode/Owner/@s.OldOwnerId">@s.OldOwnerId</a></th>
+                        <th scope="row"><a href="/RealtorMode/Realtor/@s.RealtorId">@s.RealtorId</a></th>
+                        <th scope="row">@s.Date</th>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+
+
+
+    <p> @ViewBag.TableNameLeased</p>
+<form method="post"><button name="action" value="UpdateLeased">Обновить</button></form>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Стоимость, руб</th>
+                <th scope="col">Арендатор</th>
+                <th scope="col">Продавец</th>
+                <th scope="col">Риэлтор</th>
+                <th scope="col">Дата сделки</th>
+                <th scope="col">Дата окончания аренды</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.TableLeased == null || ViewBag.LeasedCount == 0)
+            {
+                <tr>
+                    <th colspan="8">Нет данных</th>
+                </tr>
+            } else
+            {
+
+                foreach (var l in ViewBag.TableLeased)
+                {
+                <tr>
+                    <th scope="row">@l.Id</th>
+                    <th scope="row">@l.RealtyType</th>
+                    <th scope="row">@l.Address</th>
+                    <th scope="row">@l.Price</th>
+                    <th scope="row"><a href="/RealtorMode/Buyer/@l.BuyerId">@l.BuyerId</a></th>
+                    <th scope="row"><a href="/RealtorMode/Owner/@l.OwnerId">@l.OwnerId</a></th>
+                    <th scope="row"><a href="/RealtorMode/Realtor/@l.RealtorId">@l.RealtorId</a></th>
+                    <th scope="row">@l.Date</th>
+                    <th scope="row"> <form method="post">
+                            <input type="hidden" value=@l.Id name="Id" />
+                            
+                            <input value="@l.DateCheckOut" id="inputDate" type="date" name="DateCheckout" />
+                            <button name="action" id="btnSave" value="SaveNewDate" style="display:none"> Сохранить</button>
+                          </form>
+                    </th>
+
+                </tr>
+                }
+            }
+        </tbody>
+    </table>
+<script>
+    btn = document.getElementById('btnSave')
+    document.getElementById('inputDate').addEventListener('change', () => {
+        btn.style.display = 'block';
+    })
+    btn.addEventListener('click', () => {
+        btn.style.display = 'none'
+    })
+</script>

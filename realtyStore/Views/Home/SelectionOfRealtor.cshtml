@@ -1,0 +1,54 @@
+﻿@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Подбор риэлтора";
+}
+
+<h3>Оставьте заявку и риэлтор с Вами свяжется</h3>
+
+<form id="realtor" method="post">
+    <select class="form-select" id="status-type" aria-label="Default select example" name="Status" style="width:100px">
+        <option value=@realtyStore.Models.Statuses.RENT>Снять</option>
+        <option value=@realtyStore.Models.Statuses.RENT_OUT>Сдать</option>
+        <option value=@realtyStore.Models.Statuses.BUY>Купить</option>
+        <option value=@realtyStore.Models.Statuses.SALE>Продать</option>
+    </select>
+
+    <select class="form-select" id="realty-type" aria-label="Default select example" name="RealtyType" style="width:100px">
+        <option value=@realtyStore.Models.Types.APARTMENT>@realtyStore.Models.Types.APARTMENT</option>
+        <option value=@realtyStore.Models.Types.ROOM>@realtyStore.Models.Types.ROOM</option>
+        <option value=@realtyStore.Models.Types.HOUSE>@realtyStore.Models.Types.HOUSE</option>
+        <option value=@realtyStore.Models.Types.GARAGE>@realtyStore.Models.Types.GARAGE</option>
+        <option value=@realtyStore.Models.Types.WAREHOUSE>@realtyStore.Models.Types.WAREHOUSE</option>
+        <option value=@realtyStore.Models.Types.LAND_PLOT>@realtyStore.Models.Types.LAND_PLOT</option>
+        <option value=@realtyStore.Models.Types.BED>@realtyStore.Models.Types.BED</option>
+        <option value=@realtyStore.Models.Types.BUILDING>@realtyStore.Models.Types.BUILDING</option>
+        <option value=@realtyStore.Models.Types.TRADING_AREA>@realtyStore.Models.Types.TRADING_AREA</option>
+        <option value=@realtyStore.Models.Types.PRODUCTION>@realtyStore.Models.Types.PRODUCTION</option>
+        <option value=@realtyStore.Models.Types.OFFICE>@realtyStore.Models.Types.OFFICE</option>
+    </select>
+
+    <input placeholder="Желаемая цена" name="Price" min="0" type="number" />
+
+    <input placeholder="Площадь" name="Square" min="0" type="number" />
+    <input placeholder="Количество комнат" name="NumberRoom" min="0" type="number" />
+    <input placeholder="Этаж" name="Floor" min="0" type="number" />
+    <input placeholder="Этажей в доме" name="Floors" min="0" type="number" />
+
+    <input placeholder="Адрес" name="Address" type="text" />
+
+    <select class="form-select" aria-label="default select example" name="CityId" style="width:100px">
+        @foreach (var c in ViewBag.Cities)
+        {
+            <option value=@c.Id>@c.Name</option>
+        }
+    </select>
+    <hr />
+    <input placeholder="Телефон" name="Phone" type="tel" />
+    <input placeholder="Фамилия" name="LastName" type="text" />
+    <input placeholder="Имя" name="FirstName" type="text" />
+    <input placeholder="Отчество" name="Patronymic" type="text" />
+
+    <button type="submit">Отправить</button>
+</form>
+
+@*<script src="@Url.Content("~/Scripts/formSale.js")" type="text/javascript"></script>*@

@@ -1,0 +1,52 @@
+﻿
+@{
+    Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml"; ;
+    ViewBag.Title = "Сделки";
+}
+
+
+<p> @ViewBag.TableName</p>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Status</th>
+            <th scope="col">Тип</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Стоимость, руб</th>
+
+            <th scope="col">Фамилия</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
+            <th scope="col">Телефон</th>
+            <th scope="col"></th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (ViewBag.Table == null || ViewBag.Count == 0)
+        {
+            <tr>
+                <th colspan="10">Нет данных</th>
+            </tr>
+        } else { 
+            foreach (var s in ViewBag.Table)
+            {
+            <tr>
+                <th scope="row">@s.Id</th>
+                <th scope="row">@s.Status</th>
+                <th scope="row">@s.RealtyType</th>
+                <th scope="row">@s.Address</th>
+                <th scope="row">@s.Price</th>
+                <th scope="row">@s.LastName</th>
+                <th scope="row">@s.FirstName</th>
+                <th scope="row">@s.Patronymic</th>
+                <th scope="row">@s.Phone</th>
+
+                <th scope="row"><a href="/RealtorMode/PlaceApp/@s.Id">Разместить</a> <a href="/RealtorMode/EditApp/@s.Id">Редактировать</a></th>
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+

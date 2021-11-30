@@ -1,0 +1,61 @@
+﻿
+@{
+    Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml"; ;
+    ViewBag.Title = "Риэлтор";
+}
+
+
+<div>
+    <a href="/RealtorMode/Realties" class="btn btn-primary"> Посмотреть объявления </a>
+    <a href="/RealtorMode/Apps" class="btn btn-primary"> Посмотреть заявки </a>
+    <a href="/RealtorMode/Dial" class="btn btn-primary"> Посмотреть сделки </a>
+    <form method="post">
+
+        <button type="submit" class="btn btn-primary" name="action" value="showOwners"> Посмотреть владельцев </button>
+        <button type="submit" class="btn btn-primary" name="action" value="showBuyers"> Посмотреть арендаторов/покупателей </button>
+    </form>
+</div>
+
+@if (ViewBag.TableName != null)
+{
+    <p> @ViewBag.TableName</p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Фамилия</th>
+                <th scope="col">Имя</th>
+                <th scope="col">Отчество</th>
+                <th scope="col">Паспорт</th>
+                <th scope="col">Телефон</th>
+                <th scope="col">Адрес</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @if(ViewBag.Table == null || ViewBag.Count == 0)
+            {
+                <tr>
+                    <th colspan="7">Нет данных</th>
+                </tr>
+            } else
+            {
+
+                foreach (var b in ViewBag.Table)
+                {
+                        <tr>
+                            <th scope="row">@b.Id</th>
+                            <th scope="row">@b.LastName</th>
+                            <th scope="row">@b.FirstName</th>
+                            <th scope="row">@b.Patronymic</th>
+                            <th scope="row">@b.Passport</th>
+                            <th scope="row">@b.Phone</th>
+                            <th scope="row">@b.Address</th>
+                        </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+    
+}

@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml"; 
+    ViewBag.Title = "Объявления";
+}
+
+
+    <p> @ViewBag.TableName</p>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Статус</th>
+                <th scope="col">Тип</th>
+                <th scope="col">Адрес</th>
+                <th scope="col">Стоимость, руб</th>
+                <th scope="col">Владелец</th>
+                <th scope="col">Риэлтор</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (ViewBag.Table == null || ViewBag.Count == 0)
+            {
+                <tr>
+                    <th colspan="7">Нет данных</th>
+                </tr>
+            }
+            else
+            {
+
+                foreach (var r in ViewBag.Table)
+                {
+        <tr>
+            <th scope="row">@r.Id</th>
+            <th scope="row">@r.Status</th>
+            <th scope="row">@r.Type</th>
+            <th scope="row">@r.Address</th>
+            <th scope="row">@r.Price</th>
+            <th scope="row"><a href="/RealtorMode/Owner/@r.OwnerId">@r.OwnerId</a></th>
+            <th scope="row"><a href="/RealtorMode/Realtor/@r.RealtorId">@r.RealtorId</a></th>
+            <th scope="row"><a href="/RealtorMode/EditRealty/@r.Id">Редактировать</a> <form method="post"> <button name="Id" value=@r.Id> Удалить</button> </form></th>
+
+        </tr>
+                }
+            }
+        </tbody>
+    </table>
+
