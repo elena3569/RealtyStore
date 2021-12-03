@@ -169,7 +169,8 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\changeTab.js" />
-    <Content Include="Scripts\EditForm.js" />
+    <Content Include="Scripts\EditApp.js" />
+    <Content Include="Scripts\EditRealty.js" />
     <Content Include="Scripts\Flat.js" />
     <Content Include="Scripts\formDaily.js" />
     <Content Include="Scripts\formNewRealty.js" />
@@ -185,6 +186,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\selectionRealtorForm.js" />
     <Content Include="Scripts\tabMortgage.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

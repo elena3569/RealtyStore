@@ -10,7 +10,7 @@ namespace realtyStore.Models
         public const string Id = "type";
         public const string APARTMENT = "Квартира";
         public const string ROOM = "Комната";
-        public const string BED = " Койко-место";
+        public const string BED = "Койко-место";
         public const string HOUSE = "Дом";
         public const string GARAGE = "Гараж";
         public const string WAREHOUSE = "Склад";

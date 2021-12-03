@@ -98,10 +98,13 @@
     </table>
 <script>
     btn = document.getElementById('btnSave')
-    document.getElementById('inputDate').addEventListener('change', () => {
-        btn.style.display = 'block';
+    date = document.getElementById('inputDate')
+    date.addEventListener('change', (e) => {
+        if (Date.parse(e.target.value) >= new Date()) {
+            btn.style.display = 'block';
+        }
     })
     btn.addEventListener('click', () => {
-        btn.style.display = 'none'
+        btn.style.display = 'none';
     })
 </script>

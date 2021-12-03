@@ -2,15 +2,16 @@
 
 @{
     Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml";
-    ViewBag.Title = "Редактирование заявки";
+    ViewBag.Title = "Редактирование объявления";
 }
 
 
 <form method="post">
+    <input type="hidden" value="Edit" id="typeForm" />
     <input type="hidden" value="@Model.Id" name="Id" />
-    <input type="hidden" value="@Model.Status" id="statusTypeVal" />
+    <input type="hidden" value="@Model.Status" id="statusTypeRealty" />
 
-    <select class="form-select" value="@Model.Status" id="status-type" aria-label="Default select example" name="Status" style="width:100px">
+    <select class="form-select" value="@Model.Status" id="status-type-realty" aria-label="Default select example" name="Status" style="width:100px">
         <option value=@realtyStore.Models.Statuses.SOLD>Продано</option>
         <option value=@realtyStore.Models.Statuses.LEASED>Сдано</option>
     </select>
@@ -18,11 +19,16 @@
     <hr />
 
     <textarea value=@Model.Description placeholder="Описание" name="Description" type="text"></textarea>
-    
-    конец аренды
-    <input type="date" name="date" />
 
-    <button type="submit"> Сохранить </button>
+    <div id="date">
+        <p>конец аренды</p>
+        <input type="date" name="date" id="dateValue" />
+        <p id="error" style="color:red; display:none">Введите корректное значение</p>
+    </div>
+
+
+    <button type="submit" id="btn"> Сохранить </button>
     <a href="/RealtorMode/Realties"> Отменить </a>
+
 </form>
-<script src="@Url.Content("~/Scripts/EditForm.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/EditRealty.js")" type="text/javascript"></script>

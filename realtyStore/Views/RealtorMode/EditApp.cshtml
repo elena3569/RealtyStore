@@ -44,7 +44,7 @@
 
     <input value=@Model.Floors placeholder="Этажей в доме" name="Floors" min="0" type="number" />
 
-    <input value="@Model.Address" placeholder="Адрес" name="Address" type="text" />
+    <input id="address" value="@Model.Address" placeholder="Адрес" name="Address" type="text" />
 
     <select class="form-select" aria-label="default select example" id="CityId" name="CityId" style="width:100px">
         @foreach (var c in ViewBag.Cities)
@@ -54,15 +54,15 @@
     </select>
     <hr />
 
-    <input value=@Model.Phone placeholder="Телефон" name="Phone" type="tel" />
-    <input value=@Model.LastName placeholder="Фамилия" name="LastName" type="text" />
-    <input value=@Model.FirstName placeholder="Имя" name="FirstName" type="text" />
-    <input value=@Model.Patronymic placeholder="Отчество" name="Patronymic" type="text" />
-    <input placeholder="Паспорт" name="Passport" type="text" />
+    <input id="phone" value=@Model.Phone placeholder="Телефон" name="Phone" type="tel" />
+    <input id="lastname" value=@Model.LastName placeholder="Фамилия" name="LastName" type="text" />
+    <input id="firstname" value=@Model.FirstName placeholder="Имя" name="FirstName" type="text" />
+    <input id="patronymic" value=@Model.Patronymic placeholder="Отчество" name="Patronymic" type="text" />
+    <input id="passport" placeholder="Паспорт" name="Passport" type="text" />
 
     <textarea value=@Model.Description placeholder="Описание" name="Description" type="text"></textarea>
 
-    <button type="submit"> Сохранить </button>
+    <button type="submit" id="btnsave" disabled> Сохранить </button>
     <a href="/RealtorMode/Apps"> Отменить </a>
 </form>
-<script src="@Url.Content("~/Scripts/EditForm.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/EditApp.js")" type="text/javascript"></script>
