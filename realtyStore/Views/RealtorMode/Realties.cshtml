@@ -5,7 +5,7 @@
 }
 
 
-    <p> @ViewBag.TableName</p>
+    <h3> @ViewBag.TableName</h3>
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -23,7 +23,7 @@
             @if (ViewBag.Table == null || ViewBag.Count == 0)
             {
                 <tr>
-                    <th colspan="7">Нет данных</th>
+                    <th class="text-center" colspan="8">Нет данных</th>
                 </tr>
             }
             else
@@ -37,9 +37,9 @@
             <th scope="row">@r.Type</th>
             <th scope="row">@r.Address</th>
             <th scope="row">@r.Price</th>
-            <th scope="row"><a href="/RealtorMode/Owner/@r.OwnerId">@r.OwnerId</a></th>
+            <th scope="row"><a href="/RealtorMode/ShowUser/@r.OwnerId">@r.OwnerId</a></th>
             <th scope="row"><a href="/RealtorMode/Realtor/@r.RealtorId">@r.RealtorId</a></th>
-            <th scope="row"><a href="/RealtorMode/EditRealty/@r.Id">Редактировать</a> <form method="post"> <button name="Id" value=@r.Id> Удалить</button> </form></th>
+            <th scope="row"><a href="/RealtorMode/EditRealty/@r.Id"><i data-title="Редактировать" class="fas fa-edit icon-act"></i></a> <form method="post"> <button class="btn-no-bcg" name="Id" value=@r.Id> <i class="fas fa-times icon-act" data-title="Удалить" style="color: red;"></i></button> </form></th>
 
         </tr>
                 }

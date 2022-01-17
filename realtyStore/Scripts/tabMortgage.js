@@ -31,9 +31,13 @@ const inputContribution = document.getElementById("inputContribution")
 const inputYears = document.getElementById("inputYears")
 
 const outputPay = document.getElementById("pay")
-//const buttonEl = document.getElementById('calculate')
+//const buttonEl = document.getElementById('btn-calculate')
 
-//buttonEl.onclick = function (){}
+//buttonEl.onclick = function () {
+//    if (+inputPrice.value >= 500000) {
+//        document.getElementById('calculator');
+//    }
+//}
 
 inputContribution.oninput = function () {
 
@@ -84,4 +88,3 @@ sliderPercent.oninput = function () {
     outputPercent.innerHTML = this.value;
     outputPay.innerHTML = ipoteka(+outputPrice.innerHTML, +outputContribution.innerHTML, +outputPercent.innerHTML, +outputYears.innerHTML) + 'руб.'
 }
-

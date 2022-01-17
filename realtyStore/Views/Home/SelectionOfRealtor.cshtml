@@ -1,55 +1,93 @@
-﻿@{ 
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Подбор риэлтора";
+    realtyStore.Models.RealtyContext db = new realtyStore.Models.RealtyContext();
+    var user = db.Users.FirstOrDefault(u => u.LogIn == User.Identity.Name);
+    if (user == null)
+    {
+        user = new realtyStore.Models.myUser { };
+    }
 }
 
 <h3>Оставьте заявку и риэлтор с Вами свяжется</h3>
 
 <form id="realtor" method="post">
-    <select class="form-select" id="status-type" aria-label="Default select example" name="Status" style="width:100px">
-        <option value=@realtyStore.Models.Statuses.RENT>Снять</option>
-        <option value=@realtyStore.Models.Statuses.RENT_OUT>Сдать</option>
-        <option value=@realtyStore.Models.Statuses.FOR_RENT_DAILY>Сдать посуточно</option>
-        <option value=@realtyStore.Models.Statuses.BUY>Купить</option>
-        <option value=@realtyStore.Models.Statuses.SALE>Продать</option>
-    </select>
-
-    <select class="form-select" id="realty-type" aria-label="Default select example" name="RealtyType" style="width:100px">
-        <option value=@realtyStore.Models.Types.HOUSE>@realtyStore.Models.Types.HOUSE</option>
-        <option value=@realtyStore.Models.Types.APARTMENT>@realtyStore.Models.Types.APARTMENT</option>
-        <option value=@realtyStore.Models.Types.ROOM>@realtyStore.Models.Types.ROOM</option>
-        <option value=@realtyStore.Models.Types.BED>@realtyStore.Models.Types.BED</option>
-        <option value=@realtyStore.Models.Types.WAREHOUSE>@realtyStore.Models.Types.WAREHOUSE</option>
-        <option value=@realtyStore.Models.Types.BUILDING>@realtyStore.Models.Types.BUILDING</option>
-        <option value=@realtyStore.Models.Types.TRADING_AREA>@realtyStore.Models.Types.TRADING_AREA</option>
-        <option value=@realtyStore.Models.Types.PRODUCTION>@realtyStore.Models.Types.PRODUCTION</option>
-        <option value=@realtyStore.Models.Types.OFFICE>@realtyStore.Models.Types.OFFICE</option>
-        <option value=@realtyStore.Models.Types.LAND_PLOT>@realtyStore.Models.Types.LAND_PLOT</option>
-        <option value=@realtyStore.Models.Types.GARAGE>@realtyStore.Models.Types.GARAGE</option>
-    </select>
-
-    <input id="price" placeholder="Желаемая цена" name="Price" min="0" type="number" />
-
-    <input id="square" placeholder="Площадь" name="Square" min="0" type="number" />
-    <input id="numberRoom" placeholder="Количество комнат" name="NumberRoom" min="0" type="number" />
-    <input id="floor" placeholder="Этаж" name="Floor" min="0" type="number" />
-    <input id="floors" placeholder="Этажей в доме" name="Floors" min="0" type="number" />
-
-    <input id="address" placeholder="Адрес" name="Address" type="text" />
-
-    <select class="form-select" aria-label="default select example" name="CityId" style="width:100px">
-        @foreach (var c in ViewBag.Cities)
-        {
-            <option value=@c.Id>@c.Name</option>
-        }
-    </select>
+    <div class="select-group m-10 bcg-white">
+        <select class="form-select input-box" id="status-type" aria-label="Default select example" name="Status">
+            <option value=@realtyStore.Models.Statuses.RENT>Снять</option>
+            <option value=@realtyStore.Models.Statuses.RENT_OUT>Сдать</option>
+            <option value=@realtyStore.Models.Statuses.FOR_RENT_DAILY>Сдать посуточно</option>
+            <option value=@realtyStore.Models.Statuses.BUY>Купить</option>
+            <option value=@realtyStore.Models.Statuses.SALE>Продать</option>
+        </select>
+        <select class="form-select input-box" id="realty-type" aria-label="Default select example" name="RealtyType">
+            <option value=@realtyStore.Models.Types.HOUSE>@realtyStore.Models.Types.HOUSE</option>
+            <option value=@realtyStore.Models.Types.APARTMENT>@realtyStore.Models.Types.APARTMENT</option>
+            <option value=@realtyStore.Models.Types.ROOM>@realtyStore.Models.Types.ROOM</option>
+            <option value=@realtyStore.Models.Types.BED>@realtyStore.Models.Types.BED</option>
+            <option value=@realtyStore.Models.Types.WAREHOUSE>@realtyStore.Models.Types.WAREHOUSE</option>
+            <option value=@realtyStore.Models.Types.BUILDING>@realtyStore.Models.Types.BUILDING</option>
+            <option value=@realtyStore.Models.Types.TRADING_AREA>@realtyStore.Models.Types.TRADING_AREA</option>
+            <option value=@realtyStore.Models.Types.PRODUCTION>@realtyStore.Models.Types.PRODUCTION</option>
+            <option value=@realtyStore.Models.Types.OFFICE>@realtyStore.Models.Types.OFFICE</option>
+            <option value=@realtyStore.Models.Types.LAND_PLOT>@realtyStore.Models.Types.LAND_PLOT</option>
+            <option value=@realtyStore.Models.Types.GARAGE>@realtyStore.Models.Types.GARAGE</option>
+        </select>
+        <select class="form-select input-box" aria-label="default select example" name="CityId">
+            @foreach (var c in db.Cities)
+            {
+                <option value=@c.Id>@c.Name</option>
+            }
+        </select>
+    </div>
+    <div class="group-input m-10 bcg-white">
+        <div class="input-box">
+            <label class="form-label" for="price">Цена</label>
+            <input class="form-control" id="price" placeholder="Желаемая цена" name="Price" min="0" type="number" required />
+        </div>
+        <div class="input-box" id="square">
+            <label class="form-label" for="square-input">Площадь</label>
+            <input class="form-control" id="square-input" placeholder="Площадь" name="Square" min="0" type="number" />
+        </div>
+        <div class="input-box" id="numberRoom">
+            <label class="form-label" for="numberRoom-input">Количество комнат</label>
+            <input class="form-control" id="numberRoom-input" placeholder="Количество комнат" name="NumberRoom" min="0" type="number" />
+        </div>
+        <div class="input-box" id="floor">
+            <label class="form-label" for="floor-input">Этаж</label>
+            <input class="form-control" id="floor-input" placeholder="Этаж" name="Floor" min="0" type="number" />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="floors">Этажей в доме</label>
+            <input class="form-control" id="floors" placeholder="Этажей в доме" name="Floors" min="0" type="number" />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="address">Адрес</label>
+            <input class="form-control" id="address" placeholder="Адрес" name="Address" type="text" />
+        </div>
+    </div>
     <hr />
-    <input id="phone" placeholder="Телефон" name="Phone" type="tel" />
-    <input placeholder="Фамилия" name="LastName" type="text" />
-    <input id="name" placeholder="Имя" name="FirstName" type="text" />
-    <input placeholder="Отчество" name="Patronymic" type="text" />
-
-    <button type="submit" disabled>Отправить</button>
+    <div class="group-input m-10 bcg-white">
+        <div class="input-box">
+            <label class="form-label" for="phone">Телефон</label>
+            <input class="form-control" value="@user.Phone" id="phone" placeholder="Телефон" name="Phone" type="tel" required />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="lastName">Фамилия</label>
+            <input class="form-control" value="@user.LastName" placeholder="Фамилия" id="latsName" name="LastName" type="text" />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="name">Имя</label>
+            <input class="form-control" id="name" value="@user.FirstName" placeholder="Имя" name="FirstName" type="text" required />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="patronymic">Отчество</label>
+            <input class="form-control" placeholder="Отчество" value="@user.Patronymic" name="Patronymic" type="text" />
+        </div>
+    </div>
+    <div class="input-box m-10">
+        <button class="btn btn-primary group-input input-box" type="submit" id="btnsave">Отправить</button>
+    </div>
 </form>
 
 <script src="@Url.Content("~/Scripts/selectionRealtorForm.js")" type="text/javascript"></script>

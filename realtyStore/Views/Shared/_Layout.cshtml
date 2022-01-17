@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <script src="https://kit.fontawesome.com/cff7379dc1.js" crossorigin="anonymous"></script>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -12,27 +13,54 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Имя приложения", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
-                    <li class="btn btn-primary">@Html.ActionLink("Разместить объявление", "Announcement", "Home")</li>
+            <div class="navbar-collapse my-nav">
+                <a href="/"><i class='fas fa-home icon-header'></i></a>
+                <div style="width:50%"></div>
 
-                </ul>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <div>
+                        <p>@Html.ActionLink("Вход", "LoginForm", "Account", new { area = "" }, new { @class = "link-header" })</p>
+                        <p>@Html.ActionLink("Регистрация", "RegisterForm", "Account", new { area = "" }, new { @class = "link-header" })</p>
+                    </div>
+                }
+                else
+                {
+                    realtyStore.Models.RealtyContext db = new realtyStore.Models.RealtyContext();
+                    var user = db.Users.FirstOrDefault(u => u.LogIn == User.Identity.Name);
+                    if (user != null && user.RoleId == 2)
+                    {
+                        <p>@Html.ActionLink("Режим риелтора", "Index", "RealtorMode", new { area = "" }, new { @class = "btn btn-header" })</p>
+
+                    }
+            <div class="header-right">
+                @if (user != null)
+                {
+                    <div class="link-header userName"> @user.FirstName @user.LastName</div>
+                    <div class="profileMenu">
+                        <ul>
+                            <li>
+                                @Html.ActionLink("Избранное", "FavoriteRealties", "Home")
+                            </li>
+                            <li>
+                                @Html.ActionLink("Мои объявления", "MyFlats", "Home")
+                            </li>
+                            <li> @Html.ActionLink("Выход", "Logoff", "Account")</li>
+                        </ul>
+                    </div>
+                }
+            </div>
+
+                }
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
+        <div class="wrapper">
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            <hr />
             <p>&copy; @DateTime.Now.Year</p>
         </footer>
     </div>

@@ -1,74 +1,88 @@
-﻿<div id="for-rent">
-    
-    <form method="post">
+﻿<div id="for-rent" style="display: @(ViewBag.status == realtyStore.Models.Statuses.RENT_OUT ? "block" : "none");">
 
-        <select class="form-select" id="realty-type" aria-label="Default select example" name="RealtyType" style="width:100px">
-            <option value=@realtyStore.Models.Types.APARTMENT>@realtyStore.Models.Types.APARTMENT</option>
-            <option value=@realtyStore.Models.Types.ROOM>@realtyStore.Models.Types.ROOM</option>
-            <option value=@realtyStore.Models.Types.HOUSE>@realtyStore.Models.Types.HOUSE</option>
-            <option value=@realtyStore.Models.Types.BED>@realtyStore.Models.Types.BED</option>
-            <option value=@realtyStore.Models.Types.GARAGE>@realtyStore.Models.Types.GARAGE</option>
-            <option value=@realtyStore.Models.Types.WAREHOUSE>@realtyStore.Models.Types.WAREHOUSE</option>
-            <option value=@realtyStore.Models.Types.BUILDING>@realtyStore.Models.Types.BUILDING</option>
-            <option value=@realtyStore.Models.Types.TRADING_AREA>@realtyStore.Models.Types.TRADING_AREA</option>
-            <option value=@realtyStore.Models.Types.PRODUCTION>@realtyStore.Models.Types.PRODUCTION</option>
-            <option value=@realtyStore.Models.Types.OFFICE>@realtyStore.Models.Types.OFFICE</option>
-        </select>
-        <div class="input-group">
-            <p>Цена</p>
-            <input placeholder="от" min=0 name="MinPrice" type="number" />
-            <input placeholder="до" min=0 name="MaxPrice" type="number" />
-
-        </div>
-        <div class="input-group" id="square" style="display:none">
-            <p>Площадь</p>
-            <input placeholder="от" min=0 name="MinSquare" type="number" />
-            <input placeholder="до" min=0 name="MaxSquare" type="number" />
-
-        </div>
-        <div class="checkBox-group" id="numRooms">
-            Количество комнат
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="NumberRooms[]" checked>
-                <label class="form-check-label" for="flexCheckDefault">
-                    1
-                </label>
-
-                <input class="form-check-input" type="checkbox" value="2" id="flexCheckChecked" name="NumberRooms[]" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                    2
-                </label>
-
-                <input class="form-check-input" type="checkbox" value="3" id="flexCheckDefault" name="NumberRooms[]" checked>
-                <label class="form-check-label" for="flexCheckDefault">
-                    3
-                </label>
-
-                <input class="form-check-input" type="checkbox" value="4" id="flexCheckChecked" name="NumberRooms[]" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                    4
-                </label>
-
-                <input class="form-check-input" type="checkbox" value="5" id="flexCheckChecked" name="NumberRooms[]" checked>
-                <label class="form-check-label" for="flexCheckChecked">
-                    5+
-                </label>
+    <form method="post" class="form">
+        <div class="group-input">
+            <select class="form-select input-box" aria-label="default select example" name="CityId">
+                @foreach (var c in ViewBag.Cities)
+                {
+                    <option value=@c.Id>@c.Name</option>
+                }
+            </select>
+            <select class="form-select input-box" id="realty-type" aria-label="Default select example" name="RealtyType">
+                <option value=@realtyStore.Models.Types.APARTMENT>@realtyStore.Models.Types.APARTMENT</option>
+                <option value=@realtyStore.Models.Types.ROOM>@realtyStore.Models.Types.ROOM</option>
+                <option value=@realtyStore.Models.Types.HOUSE>@realtyStore.Models.Types.HOUSE</option>
+                <option value=@realtyStore.Models.Types.BED>@realtyStore.Models.Types.BED</option>
+                <option value=@realtyStore.Models.Types.GARAGE>@realtyStore.Models.Types.GARAGE</option>
+                <option value=@realtyStore.Models.Types.WAREHOUSE>@realtyStore.Models.Types.WAREHOUSE</option>
+                <option value=@realtyStore.Models.Types.BUILDING>@realtyStore.Models.Types.BUILDING</option>
+                <option value=@realtyStore.Models.Types.TRADING_AREA>@realtyStore.Models.Types.TRADING_AREA</option>
+                <option value=@realtyStore.Models.Types.PRODUCTION>@realtyStore.Models.Types.PRODUCTION</option>
+                <option value=@realtyStore.Models.Types.OFFICE>@realtyStore.Models.Types.OFFICE</option>
+            </select>
+            <div class="input-box">
+                <label class="form-label" for="MinPrice"> Цена </label>
+                <div style="display: flex">
+                    <input class="form-control" id="MinPrice" placeholder="от" min=0 name="MinPrice" type="number" />
+                    <input class="form-control" id="MaxPrice" placeholder="до" min=0 name="MaxPrice" type="number" />
+                </div>
             </div>
+            <div class="input-box" id="square" style="display:none">
+                <label class="form-label" for="MinSquare"> Площадь </label>
+                <div style="display: flex">
+                    <input class="form-control" id="MinSquare" placeholder="от" min=0 name="MinSquare" type="number" />
+                    <input class="form-control" id="MaxSquare" placeholder="до" min=0 name="MaxSquare" type="number" />
+                </div>
+            </div>
+            <div id="numRooms" class="m-10">
+                <label class="form-label" for="numRooms-checkboxes">Количество комнат</label>
+                <div class="checkBox-group" id="numRooms-checkboxes">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="NumberRooms[]" checked>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            1
+                        </label>
+
+                        <input class="form-check-input" type="checkbox" value="2" id="flexCheckChecked" name="NumberRooms[]" checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            2
+                        </label>
+
+                        <input class="form-check-input" type="checkbox" value="3" id="flexCheckDefault" name="NumberRooms[]" checked>
+                        <label class="form-check-label" for="flexCheckDefault">
+                            3
+                        </label>
+
+                        <input class="form-check-input" type="checkbox" value="4" id="flexCheckChecked" name="NumberRooms[]" checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            4
+                        </label>
+
+                        <input class="form-check-input" type="checkbox" value="5" id="flexCheckChecked" name="NumberRooms[]" checked>
+                        <label class="form-check-label" for="flexCheckChecked">
+                            5+
+                        </label>
+                    </div>
+                </div>
+
+            </div>
+            <button class="btn btn-primary group-input input-box" id="search" name="status" type="submit" value="@realtyStore.Models.Statuses.RENT_OUT">Поиск</button>
         </div>
-        <select class="form-select" aria-label="default select example" name="CityId" style="width:100px">
-            @foreach (var c in ViewBag.Cities)
-            {
-                <option value=@c.Id>@c.Name</option>
-            }
-        </select>
-        <button id="search" name="status" type="submit" value="Сдается">Поиск</button>
     </form>
 
     <div class="results">
-        @if (ViewBag.Realties != null)
+        @if (ViewBag.ShowResult && ViewBag.status == realtyStore.Models.Statuses.RENT_OUT)
         {
-            Html.RenderPartial("_RealtyItemsList");
+            if (ViewBag.Realties != null && ViewBag.Count != 0)
+            {
+                Html.RenderPartial("_RealtyItemsList");
+            }
+            if (ViewBag.TextResult != null)
+            {
+                <h3 class="text-result"> @ViewBag.TextResult</h3>
+            }
         }
+
     </div>
 
 </div>

@@ -2,21 +2,60 @@
 @foreach (var r in ViewBag.Realties)
 {
     <div class="realtyItem">
-        <div class="realtyItem__img">
-            <a href="Home/Flat/@r.Id"><img src=@r.ImgUrl alt="photo" /></a>
-        </div>
-
         <div>
-            <a href="Home/Flat/@r.Id"><p class="realtyItem__title">@r.Status @r.Type</p></a>
-            <p class="realtyItem__desc_mini">
-                @if (r.NumberRoom != null)
-                {<span>@r.NumberRoom -комн. </span>}
-                @r.Type, r.Square кв.м.,
-                @if (@r.Floor > 0)
-                {<span> @r.Floor /</span>} @r.Floors эт.
-            </p>
-
-            <p class="realtyItem__price"> @r.Price руб.</p>
+            <a href="/Home/Flat/@r.Id"><img class="realtyItem__img" src="@(r.ImgUrl.Split(' ')[0])" alt="photo" /></a>
         </div>
+
+        <div class="realtyItem__description">
+            <div>
+                <a href="/Home/Flat/@r.Id"><p class="realtyItem__title">@r.Status @r.Type</p></a>
+                <p class="realtyItem__desc_mini">
+                    @if (r.NumberRoom != null)
+                    {<span>@r.NumberRoom -комн. </span>}
+                    @r.Type, @r.Square кв.м.,
+                    @if (@r.Floor > 0)
+                    {<span> @r.Floor /</span>} @r.Floors эт.
+                </p>
+            </div>
+            <div class="price-block">
+                <p class="realtyItem__price"> @r.Price &#8381</p>
+                @{Html.RenderPartial("toogleFavorite", new realtyStore.Models.toggleParams { id = r.Id, isFavorite = r.isFavorite });}
+            </div>
+        </div>
+
     </div>
 }
+
+
+<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")" type="text/javascript"></script>
+<script type="text/javascript">
+    const btns = document.querySelectorAll('.btn-heart');
+    for(let i = 0; i < btns.length; i++) {
+        btns[i].addEventListener('click', (e) => {
+         e.preventDefault();
+            $.ajax({
+                url: `@Url.RouteUrl(new { controller = "Home", action = "toogleFavorite"})?id=${e.target.parentNode.id}`,
+                success: function (partialView) {
+                    $(`#${e.target.parentNode.id}`).html(partialView);
+                }
+        });
+    })
+    }
+    
+//function toggleFavoriteItem(e) {
+//    let favoriteItems = JSON.parse(localStorage.getItem('favoriteItems'));
+//    const targetId = e.target.parentNode.id;
+//    if (favoriteItems == null) {
+//        favoriteItems = [];
+//    }
+//    const isFavorite = favoriteItems.includes(targetId);
+//    if (!isFavorite) {
+//        localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems.concat(targetId)))
+//    } else {
+//        localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems.filter(item => item != targetId)))
+//    }
+//    console.log(localStorage.getItem('favoriteItems'));
+//    console.log(JSON.parse(localStorage.getItem('favoriteItems')));
+//    console.log(JSON.localStorage.getItem('favoriteItems'));
+//}
+</script>

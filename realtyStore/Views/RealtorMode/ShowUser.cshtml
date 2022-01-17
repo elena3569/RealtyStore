@@ -1,0 +1,22 @@
+﻿@{
+    Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml";
+    ViewBag.Title = "Клиент";
+}
+
+@if (ViewBag.men != null)
+{
+    <div class="bcg-white edit-form">
+        <div><label class="form-label block">Фамилия: @ViewBag.men.LastName</label></div>
+        <div><label class="form-label">Имя:  @ViewBag.men.FirstName</label></div>
+        <div><label class="form-label">Отчество:  @ViewBag.men.Patronymic</label></div>
+        <div><label class="form-label">Паспорт:  @ViewBag.men.Passport</label></div>
+        <div><label class="form-label">Телефон:  @ViewBag.men.Phone</label></div>
+        <div><label class="form-label">Адрес: @ViewBag.address</label></div>
+
+    </div>
+}
+else
+{
+    <h3>Не найден!</h3>
+}
+

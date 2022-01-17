@@ -5,20 +5,20 @@
 }
 
 
-<div>
-    <a href="/RealtorMode/Realties" class="btn btn-primary"> Посмотреть объявления </a>
-    <a href="/RealtorMode/Apps" class="btn btn-primary"> Посмотреть заявки </a>
-    <a href="/RealtorMode/Dial" class="btn btn-primary"> Посмотреть сделки </a>
+<div class="group-btn">
+    <a href="/RealtorMode/Realties" class="btn btn-primary m-10"> Посмотреть объявления </a>
+    <a href="/RealtorMode/Apps" class="btn btn-primary m-10"> Посмотреть заявки </a>
+    <a href="/RealtorMode/Dial" class="btn btn-primary m-10"> Посмотреть сделки </a>
     <form method="post">
 
-        <button type="submit" class="btn btn-primary" name="action" value="showOwners"> Посмотреть владельцев </button>
-        <button type="submit" class="btn btn-primary" name="action" value="showBuyers"> Посмотреть арендаторов/покупателей </button>
+        <button type="submit" class="btn btn-primary m-10" name="action" value="showOwners"> Посмотреть владельцев </button>
+        <button type="submit" class="btn btn-primary m-10" name="action" value="showBuyers"> Посмотреть арендаторов/покупателей </button>
     </form>
 </div>
 
 @if (ViewBag.TableName != null)
 {
-    <p> @ViewBag.TableName</p>
+    <h3> @ViewBag.TableName</h3>
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>

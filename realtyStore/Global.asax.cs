@@ -7,6 +7,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using System.Data.Entity;
 using realtyStore.Models;
+using realtyStore.Controllers;
 
 namespace realtyStore
 {

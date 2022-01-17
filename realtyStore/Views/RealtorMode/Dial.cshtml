@@ -5,7 +5,7 @@
 }
 
 
-    <p> @ViewBag.TableNameSold</p>
+    <h3> @ViewBag.TableNameSold</h3>
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -23,7 +23,7 @@
             @if (ViewBag.TableSold == null || ViewBag.SoldCount == 0)
             {
                 <tr>
-                    <th colspan="8">Нет данных</th>
+                    <th class="text-center" colspan="9">Нет данных</th>
                 </tr>
             } else
             {
@@ -35,8 +35,8 @@
                         <th scope="row">@s.RealtyType</th>
                         <th scope="row">@s.Address</th>
                         <th scope="row">@s.Price</th>
-                        <th scope="row"><a href="/RealtorMode/Owner/@s.NewOwnerId">@s.NewOwnerId</a></th>
-                        <th scope="row"><a href="/RealtorMode/Owner/@s.OldOwnerId">@s.OldOwnerId</a></th>
+                        <th scope="row"><a href="/RealtorMode/ShowUser/@s.BuyerId">@s.BuyerId</a></th>
+                        <th scope="row"><a href="/RealtorMode/ShowUser/@s.OwnerId">@s.OwnerId</a></th>
                         <th scope="row"><a href="/RealtorMode/Realtor/@s.RealtorId">@s.RealtorId</a></th>
                         <th scope="row">@s.Date</th>
                     </tr>
@@ -47,8 +47,7 @@
 
 
 
-    <p> @ViewBag.TableNameLeased</p>
-<form method="post"><button name="action" value="UpdateLeased">Обновить</button></form>
+    <h3> @ViewBag.TableNameLeased</h3>
     <table class="table table-striped">
         <thead class="thead-dark">
             <tr>
@@ -61,13 +60,14 @@
                 <th scope="col">Риэлтор</th>
                 <th scope="col">Дата сделки</th>
                 <th scope="col">Дата окончания аренды</th>
+                <th scope="col"><form method="post"> <button class="btn-no-bcg" name="action" value="UpdateLeased"><i data-title="Обновить" class="fas fa-sync-alt icon-act"></i></button></form></th>
             </tr>
         </thead>
         <tbody>
             @if (ViewBag.TableLeased == null || ViewBag.LeasedCount == 0)
             {
                 <tr>
-                    <th colspan="8">Нет данных</th>
+                    <th class="text-center" colspan="10">Нет данных</th>
                 </tr>
             } else
             {
@@ -79,8 +79,8 @@
                     <th scope="row">@l.RealtyType</th>
                     <th scope="row">@l.Address</th>
                     <th scope="row">@l.Price</th>
-                    <th scope="row"><a href="/RealtorMode/Buyer/@l.BuyerId">@l.BuyerId</a></th>
-                    <th scope="row"><a href="/RealtorMode/Owner/@l.OwnerId">@l.OwnerId</a></th>
+                    <th scope="row"><a href="/RealtorMode/ShowUser/@l.BuyerId">@l.BuyerId</a></th>
+                    <th scope="row"><a href="/RealtorMode/ShowUser/@l.OwnerId">@l.OwnerId</a></th>
                     <th scope="row"><a href="/RealtorMode/Realtor/@l.RealtorId">@l.RealtorId</a></th>
                     <th scope="row">@l.Date</th>
                     <th scope="row"> <form method="post">
@@ -95,7 +95,8 @@
                 }
             }
         </tbody>
-    </table>
+    </table> 
+
 <script>
     btn = document.getElementById('btnSave')
     date = document.getElementById('inputDate')

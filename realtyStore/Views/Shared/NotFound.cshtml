@@ -1,0 +1,10 @@
+﻿@{
+    ViewBag.Title = "404";
+}
+
+<h1>404</h1>
+<p>Не удалось найти страницу: @ViewBag.RequestedUrl</p>
+@if (ViewBag.ReferrerUrl != null) {
+<p>Вернуться к  <a href="@ViewBag.ReferrerUrl">предыдущей странице</a>.</p>
+}
+

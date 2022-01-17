@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Заявка успешно создана";
+}
+
+<div class="answer-content">
+    <p>Благодарим за обращение! Риэлтор позвонит в течении 2 рабочих дней!</p>
+    <p>Вoзврат на главную страницу через 5 секунд</p>
+</div>
+
+<script>
+    
+    function countDown() {
+        window.location = '/';
+    }
+
+    function handler() {
+       setTimeout(countDown, 5000)
+    }
+
+    document.addEventListener('DOMContentLoaded', handler);
+</script>
+<style>
+    p {
+        font-size: 32px;
+    }
+</style>

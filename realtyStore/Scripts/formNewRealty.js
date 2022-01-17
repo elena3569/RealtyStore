@@ -59,4 +59,3 @@ function check(e) {
 realtyTypeRentEl.addEventListener('change', check)
 
 realtyTypeSaleEl.addEventListener('change', check)
-

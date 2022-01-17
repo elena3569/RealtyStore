@@ -16,4 +16,9 @@ namespace realtyStore.Models
         public int? MaxPrice { get; set; }
 
     }
+    public class toggleParams
+    {
+        public int id { get; set; }
+        public bool isFavorite { get; set; }
+    }
 }

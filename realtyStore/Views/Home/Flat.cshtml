@@ -2,33 +2,113 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = Model.Type;
+    realtyStore.Models.RealtyContext db = new realtyStore.Models.RealtyContext();
+    var user = db.Users.FirstOrDefault(u => u.LogIn == User.Identity.Name);
 }
 
 
-<div class="realtyItem">
-    
-    <div class="realtyItem_left">
-        
-        <img src=@Model.ImgUrl alt="photo" />
-        <p class="realtyItem__title">
-            @Model.Status
+<div style="min-width: 800px;">
+    <div class="realtyItem__title-max bcg-white">
+        @Model.Status
 
-            @if (Model.NumberRoom != null)
-            {<span>@Model.NumberRoom -комн. </span>}
-            @Model.Type, @Model.Square кв.м., г. @ViewBag.City 
-            @if (@Model.Floor > 0)
-            {<span> @Model.Floor /</span>} @Model.Floors эт.
-
-        </p>
-
-        <p class="realtyItem__desc">@Model.Description</p>
-
+        @if (Model.NumberRoom != null)
+        {<span>@Model.NumberRoom-комн. </span>}
+        @Model.Type
     </div>
-    <div class="realtyItem_right">
-        <p class="realtyItem__price">@Model.Price </p>
-        <button id="showPhone">Показать телефон</button>
-        <p id="Phone" style="display:none">@ViewBag.Phone - @ViewBag.Name</p>
+    <div class="realtyItem__address bcg-white">
+        @ViewBag.City, @Model.Address
+    </div>
+    <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+        @if (ViewBag.ImgUrl.Length > 1)
+        {
+        <div class="carousel-indicators">
+
+                <button name="indicator" type="button" data-bs-target="#myCarousel" data-index="0" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            @for (var i = 1; i < ViewBag.ImgUrl.Length; i++)
+            {
+                <button name="indicator" type="button" data-bs-target="#myCarousel" data-index="@i" data-bs-slide-to="@i" aria-label="Slide @(i+1)"></button>
+
+            }
+
+        </div>
+         }
+        <div class="carousel-inner">
+            <div class="item active" data-index="0">
+                <img src="@ViewBag.ImgUrl[0]" class="carousel-img" alt="photo" />
+            </div>
+            @if (ViewBag.ImgUrl.Length > 1)
+            {
+                for (var i = 1; i < ViewBag.ImgUrl.Length; i++)
+                {
+                    <div class="item" data-index="@i">
+                        <img src="@ViewBag.ImgUrl[i]" class="carousel-img" alt="photo" />
+                    </div>
+                }
+            } 
+        </div>
+            @if (ViewBag.ImgUrl.Length > 1)
+            {
+                <button class="carousel-control left" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control icon-prev" aria-hidden="true"></span>
+                    <span class="hidden">Предыдущий</span>
+                </button>
+                <button class="carousel-control right" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control icon-next" aria-hidden="true"></span>
+                    <span class="hidden">Следующий</span>
+                </button>
+            } 
+    </div>
+    <div class="realtyItem">
+
+        <div class="realtyItem_left">
+
+            <table class="bcg-white">
+                <thead>
+                    <tr>
+                        @if (@Model.Square > 0)
+                        {
+                            <th class="thead" scope="row">@Model.Square м.кв.</th>
+                        }
+                        @if (@Model.Floor > 0)
+                        {
+                            <th class="thead" scope="row">@Model.Floor из @Model.Floors</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+
+                        @if (@Model.Square > 0)
+                        {
+                            <th class="tbody" scope="row">Общая</th>
+                        }
+                        @if (@Model.Floor > 0)
+                        {
+                            <th class="tbody" scope="row">Этаж</th>
+                        }
+                    </tr>
+                </tbody>
+            </table>
+            <hr />
+            <div>
+                @if (user != null && Model.OwnerId == user.Id)
+                {
+                    <a class="btn btn-primary" data-title="Добавить фото" href="/Home/AddPhoto/@Model.Id">Добавить фото</a>
+                }
+                <p>@Model.Description</p>
+            </div>
+
+        </div>
+        <div class="realtyItem_right">
+            <div class="price-block">
+                <p class="realtyItem__price">@Model.Price&#8381 </p>
+                @{Html.RenderPartial("toogleFavorite", new realtyStore.Models.toggleParams { id = Model.Id, isFavorite = Model.isFavorite });}
+            </div>
+            <button class="btn btn-primary" id="showPhone">Показать телефон</button>
+            <p id="Phone" style="display:none">@ViewBag.Phone - @ViewBag.Name</p>
+        </div>
     </div>
 </div>
 
+<script src="@Url.Content("~/Scripts/jquery-3.4.1.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/Flat.js")" type="text/javascript"></script>

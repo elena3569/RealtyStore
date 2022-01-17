@@ -1,0 +1,46 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Вход";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken();
+    <div class="bcg-white" style="padding: 20px; min-width: 800px">
+        @if (Model != null && Model.Count() > 0)
+        {
+            foreach (var a in Model)
+            {
+                <p style="color: red"> @a </p>
+            }
+        }
+        <div class="group-input">
+            <div class="input-box">
+                <label class="form-label" for="Name"> Логин </label>
+                <input class="form-control" type="text" id="Name" name="Name" placeholder="Логин" required />
+            </div>
+            <div class="input-box">
+                <label class="form-label" for="Password"> Пароль </label>
+                <input class="form-control" type="password" id="Password" name="Password" placeholder="Пароль" required />
+            </div>
+        </div>
+
+        <div class="group-input">
+            <div class="form-group">
+                <input type="submit" value="Вход" class="btn btn-primary group-input input-box" />
+            </div>
+            <div class="account-link">
+                @Html.ActionLink("У меня нет учетной записи", "RegisterForm", "Account")
+            </div>
+        </div>
+    </div>
+    }
+
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

@@ -1,0 +1,13 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Добавить фото";
+}
+
+
+@using (Html.BeginForm("Upload", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input hidden value="@ViewBag.realtyId" name="realtyId" />
+    <input class="m-10" type="file" name="uploads"  accept="image/*" multiple />
+    <input class="btn btn-primary m-10" type="submit" value="Загрузить" />
+}
+<p>Максимальный размер файла - 20МБ</p>

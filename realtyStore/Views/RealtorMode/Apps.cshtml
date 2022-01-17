@@ -1,11 +1,11 @@
 ﻿
 @{
     Layout = Layout = "~/Views/Shared/_Layout-RealtorMode.cshtml"; ;
-    ViewBag.Title = "Сделки";
+    ViewBag.Title = "Заявки";
 }
 
 
-<p> @ViewBag.TableName</p>
+<h3> @ViewBag.TableName</h3>
 <table class="table table-striped">
     <thead class="thead-dark">
         <tr>
@@ -27,7 +27,7 @@
         @if (ViewBag.Table == null || ViewBag.Count == 0)
         {
             <tr>
-                <th colspan="10">Нет данных</th>
+                <th class="text-center" colspan="10">Нет данных</th>
             </tr>
         } else { 
             foreach (var s in ViewBag.Table)
@@ -43,7 +43,14 @@
                 <th scope="row">@s.Patronymic</th>
                 <th scope="row">@s.Phone</th>
 
-                <th scope="row"><a href="/RealtorMode/PlaceApp/@s.Id">Разместить</a> <a href="/RealtorMode/EditApp/@s.Id">Редактировать</a></th>
+                <th scope="row">
+                    <a href="/RealtorMode/PlaceApp/@s.Id">
+                        <i data-title="Разместить" class="fas fa-upload icon-act"></i>
+                    </a>
+                <a href="/RealtorMode/EditApp/@s.Id">
+                    <i data-title="Редактировать" class="fas fa-edit icon-act"></i>
+                   </a>
+                </th>
             </tr>
             }
         }

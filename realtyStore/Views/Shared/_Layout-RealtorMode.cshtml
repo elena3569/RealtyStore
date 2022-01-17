@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
+    <script src="https://kit.fontawesome.com/cff7379dc1.js" crossorigin="anonymous"></script>
     <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -12,21 +13,25 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("На главную", "Index", "RealtorMode", new { area = "" }, new { @class = "navbar-brand" })
+            <div class="navbar-collapse my-nav">
+                <a href="/RealtorMode"><i class='fas fa-home icon-header'></i></a>
+                <div style="width:100%"></div>
+                <div>
+                    @{ 
+                        var user = db.Users.FirstOrDefault(u => u.LogIn == User.Identity.Name);
+                    }
+                    <p class="link-header" style="color: white"> @user.FirstName @user.LastName</p>
+                    @Html.ActionLink("Выйти", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
             </div>
-            
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
+    <div class="container body-content"  style="background-color: #CDE;">
+        <div class="wrapper">
+            @RenderBody()
+        </div>
+        <footer class="footer">
+            <hr />
             <p>&copy; @DateTime.Now.Year</p>
         </footer>
     </div>

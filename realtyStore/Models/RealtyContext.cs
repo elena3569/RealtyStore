@@ -9,13 +9,12 @@ namespace realtyStore.Models
     public class RealtyContext : DbContext
     {
         public DbSet<Realty> Realties { get; set; }
-        public DbSet<Buyer> Buyers { get; set; }
-        public DbSet<Realtor> Realtors { get; set; }
-        public DbSet<Owner> Owners { get; set; }
+        public DbSet<myUser> Users { get; set; }
         public DbSet<Sold> Sold { get; set; }
         public DbSet<Leased> Leased { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<ApplicationToRealtor> Apps { get; set; }
-
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<FavoriteRealties> FavoriteRealties { get; set; }
     }
 }

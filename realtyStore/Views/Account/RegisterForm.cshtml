@@ -1,0 +1,88 @@
+﻿@model List<string>
+@{
+    ViewBag.Title = "Регистрация";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class=" bcg-white" style="padding: 20px">
+    @if (Model != null && Model.Count() > 0)
+    {
+        foreach(var a in Model)
+        {
+            <p style="color: red"> @a </p>
+        }
+    }
+    <div class="group-input">
+
+        <div class="input-box">
+            <label for="lastName" class="form-label">Фамилия</label>
+            <input class="form-control" id="lastName" type="text" name="LastName" placeholder="Фамилия" required />
+        </div>
+        <div class="input-box">
+            <label for="name" class="form-label">Имя</label>
+            <input class="form-control" id="name" type="text" name="FirstName" placeholder="Имя" required />
+        </div>
+        <div class="input-box">
+            <label for="patronymic" class="form-label">Отчество</label>
+            <input class="form-control" type="text" id="patronymic" name="Patronymic" placeholder="Отчество" />
+        </div>
+        <div class="input-box">
+            <label for="phone" class="form-label">Телефон</label>
+            <input class="form-control" id="phone" type="text" name="Phone" placeholder="Телефон" required />
+        </div>
+
+        <hr />
+
+    </div>
+
+    <div class="group-input">
+
+        <select class="form-select input-box" aria-label="default select example" name="CityId">
+            @foreach (var c in ViewBag.Cities)
+            {
+                <option value=@c.Id>@c.Name</option>
+            }
+        </select>
+
+        <div class="input-box">
+            <label class="form-label" for="Address"> Адрес </label>
+            <input class="form-control" type="text" id="address" name="Address" placeholder="Адрес" />
+        </div>
+    </div>
+
+    <hr />
+    <div class="group-input">
+        <div class="input-box">
+            <label class="form-label" for="Name"> Логин </label>
+            <input class="form-control" type="text" id="Name" name="Name" placeholder="Логин" required />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="Password"> Пароль </label>
+            <input class="form-control" type="password" id="Password" name="Password" placeholder="Пароль" required />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="ConfirmPassword"> Подтвердите пароль </label>
+            <input class="form-control" type="password" id="ConfirmPassword" name="ConfirmPassword" placeholder="Подтвердите пароль" required />
+        </div>
+
+    </div>
+    <div  class="group-input">
+
+        <div class="form-group">
+            <input type="submit" value="Зарегистрироваться" class="btn btn-primary group-input input-box" />
+        </div>
+        <div class="account-link">
+            @Html.ActionLink("Уже есть учетная запись", "LoginForm", "Account")
+        </div>
+    </div>
+
+</div>
+}
+

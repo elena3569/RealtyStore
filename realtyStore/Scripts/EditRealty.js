@@ -33,41 +33,5 @@
             document.getElementById('date').style.display = 'none';
         }
     }
-
-    if (document.getElementById('typeForm').value == 'Buyer') {
-        let lastname = '';
-        document.getElementById('lastname').addEventListener('input', (e) => {
-            lastname = e.target.value;
-            check();
-        })
-        let firstname = '';
-        document.getElementById('firstname').addEventListener('input', (e) => {
-            firstname = e.target.value;
-            check();
-        })
-        let passport = '';
-        document.getElementById('passport').addEventListener('input', (e) => {
-            passport = e.target.value;
-            check();
-        })
-
-        let phone = '';
-        document.getElementById('phone').addEventListener('input', (e) => {
-            phone = e.target.value;
-            check();
-        })
-        let address = '';
-        document.getElementById('address').addEventListener('input', (e) => {
-            address = e.target.value;
-            check();
-        })
-
-        function check() {
-            if (lastname && firstname && phone && passport && address) {
-                document.getElementById('btnsave').disabled = false;
-            }
-        }   
-
-    }
     
 })

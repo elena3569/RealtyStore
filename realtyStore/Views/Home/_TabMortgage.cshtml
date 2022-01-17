@@ -1,59 +1,76 @@
 ﻿<div id="for-sale-mortgage" style="display: none;">
-    <div>
+    <div class="group-input form">
 
-        <select class="form-select" id="realty-type-mortgage" aria-label="Default select example" name="RealtyType" style="width:100px">
+        <select class="form-select" id="realty-type-mortgage" aria-label="Default select example" name="RealtyType">
             <option value=@realtyStore.Models.Types.APARTMENT>@realtyStore.Models.Types.APARTMENT</option>
             <option value=@realtyStore.Models.Types.ROOM>@realtyStore.Models.Types.ROOM</option>
             <option value=@realtyStore.Models.Types.HOUSE>@realtyStore.Models.Types.HOUSE</option>
         </select>
 
-        <input placeholder="Стоимость недвижимости" name="price" type="text" inputmode="numeric" id="inputPrice"/>
-        <input placeholder="Первоначальный взнос" name="contribution" type="text" inputmode="numeric" id="inputContribution"/>
+        <div class="input-box">
+            <label class="form-label" for="inputPrice"> Стоимость </label>
+            <input class="form-control" placeholder="Стоимость недвижимости" name="price" type="text" inputmode="numeric" id="inputPrice" />
+        </div>
+        <div class="input-box">
+            <label class="form-label" for="inputContribution"> Первоначальный взнос </label>
+            <input class="form-control" placeholder="Первоначальный взнос" name="contribution" type="text" inputmode="numeric" id="inputContribution" />
+        </div>
 
-        <select class="form-select" id="inputYears" aria-label="Default select example" name="RealtyType" style="width:100px">
-            <option value=5>5 лет</option>
-            <option value=10>10 лет</option>
-            <option value=15>15 лет</option>
-            <option value=20>20 лет</option>
-            <option value=25>25 лет</option>
-            <option value=30>30 лет</option>
-        </select>
-
-        <select class="form-select" aria-label="default select example" name="City" style="width:100px">
-            @foreach (var c in ViewBag.Cities)
-            {
-                <option value=@c.Name>@c.Name</option>
-            }
-        </select>
-        <a href="#calculator" class="btn btn-primary">Рассчитать</a>
+        <div class="input-box">
+            <label class="form-label" for="inputYears"> Срок </label>
+            <select class="form-select" id="inputYears" aria-label="Default select example" name="RealtyType" style="margin: 0 10px">
+                <option value=5>5 лет</option>
+                <option value=10>10 лет</option>
+                <option value=15>15 лет</option>
+                <option value=20>20 лет</option>
+                <option value=25>25 лет</option>
+                <option value=30>30 лет</option>
+            </select>
+        </div>
+        <a href="#calculator" class="btn btn-primary group-input input-box">Рассчитать</a>
     </div>
 
-    <div id="calculator">
-        <div>
-            <p id="priceValue"></p>
-            <div class="slidecontainer">
-                <input type="range" min="500000" step="1000" max="99999999" value="500000" class="slider" id="priceRange">
+    <div id="calculator" class="calculator">
+        <div class="calculator-input">
+            <div class="input-box">
+                <label class="form-label text-center" for="priceValue"> Cтоимость: <span class="form-label" id="priceValue"></span>&#8381</label>
+                
+                <div class="slidecontainer">
+                    <input type="range" min="500000" step="1000" max="99999999" value="500000" class="slider" id="priceRange">
+                </div>
             </div>
 
-            <p id="contributionValue"></p>
-            <div class="slidecontainer">
-                <input type="range" min="0" step="10" max="99499999" value="50000" class="slider" id="contributionRange">
+            <div class="input-box">
+                <label class="form-label" for="contributionValue"> Взнос: <span class="form-label" id="contributionValue"></span>&#8381</label>
+                
+                <div class="slidecontainer">
+                    <input type="range" min="0" step="10" max="99499999" value="50000" class="slider" id="contributionRange">
+                </div>
+
+            </div>
+            <div class="input-box">
+                <label class="form-label" for="yearsValue"> Срок: <span class="form-label" id="yearsValue"></span>лет </label>
+                
+                <div class="slidecontainer">
+                    <input type="range" min="1" max="30" value="5" class="slider" id="yearsRange">
+                </div>
+
             </div>
 
-            <p id="yearsValue"></p>
-            <div class="slidecontainer">
-                <input type="range" min="1" max="30" value="5" class="slider" id="yearsRange">
-            </div>
-
-            <p id="percentValue"></p>
-            <div class="slidecontainer">
-                <input type="range" min="1" step="0.1" max="30" value="3.3" class="slider" id="percentRange">
+            <div class="input-box">
+                <label class="form-label" for="percentValue"> Ставка: <span class="form-label" id="percentValue"></span>%</label>
+                
+                <div class="slidecontainer">
+                    <input type="range" min="1" step="0.1" max="30" value="3.3" class="slider" id="percentRange">
+                </div>
             </div>
         </div>
 
-        <div>
-            Ежемесячный платеж: 
-            <p id="pay"></p>
+        <div class="input-box calculator-output">
+            <h3 class="text-center" for="pay">
+                Ежемесячный платеж:
+            </h3>
+            <h3 class="text-center" id="pay"></h3>
         </div>
 
     </div>

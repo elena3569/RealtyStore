@@ -54,31 +54,3 @@ function checkType() {
 checkType();
 
 realtyType.addEventListener('change', checkType)
-
-
-let name = document.getElementById('name').value;
-document.getElementById('name').addEventListener('input', (e) => {
-    lastname = e.target.value;
-    check();
-})
-let price = document.getElementById('price').value;
-document.getElementById('price').addEventListener('input', (e) => {
-    firstname = e.target.value;
-    check();
-})
-let phone = document.getElementById('phone').value;
-document.getElementById('phone').addEventListener('input', (e) => {
-    phone = e.target.value;
-    check();
-})
-let address = document.getElementById('address').value;
-document.getElementById('address').addEventListener('input', (e) => {
-    address = e.target.value;
-    check();
-})
-
-function check() {
-    if (name && price && phone && address) {
-        document.getElementById('btnsave').disabled = false;
-    }
-}

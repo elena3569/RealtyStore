@@ -1,33 +1,47 @@
-﻿@{
+﻿@model IEnumerable<realtyStore.Models.City>
+@{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    realtyStore.Models.RealtyContext db = new realtyStore.Models.RealtyContext();
+    var user = db.Users.FirstOrDefault(u => u.LogIn == User.Identity.Name);
+    ViewBag.Title = "Поиск недвижимости";
+    if (user == null)
+    {
+        user = new realtyStore.Models.myUser { };
+    }
 }
 
 
 <div>
     <h3>Поиск недвижимости</h3>
 
-    <ul class="nav nav-pills" id="nav">
+    <ul class="nav nav-tabs" id="nav">
         <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Снять</a>
+            <a class="nav-link @(ViewBag.status == realtyStore.Models.Statuses.RENT_OUT ? "active" : "")" aria-current="page" href="#">Снять</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Посуточно</a>
+            <a class="nav-link @(ViewBag.status == realtyStore.Models.Statuses.FOR_RENT_DAILY ? "active" : "")" href="#">Посуточно</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#">Купить</a>
+            <a class="nav-link @(ViewBag.status == realtyStore.Models.Statuses.SALE ? "active" : "")" href="#">Купить</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Ипотека</a>
         </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/Home/SelectionOfRealtor">Подбор риелтора</a>
-        </li>
-    </ul>
+        @if (!User.Identity.IsAuthenticated || User.Identity.IsAuthenticated && user.RoleId == 1)
+        {
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/SelectionOfRealtor">Подбор риелтора</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Home/FormNewRealty">Разместить объявление</a>
+            </li>
+        }
+        </ul>
 
     <div class="search-form">
-
-        @{Html.RenderPartial("_TabRent");}
-        @{Html.RenderPartial("_TabDaily");}
+  
+        @{Html.RenderPartial("_TabRent");} 
+        @{Html.RenderPartial("_TabDaily");} 
         @{Html.RenderPartial("_TabSale");}
         @{Html.RenderPartial("_TabMortgage");}
     </div>

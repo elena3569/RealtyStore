@@ -4,28 +4,50 @@
     ViewBag.Title = "Арендатор/покупатель";
 }
 
-
+<h3>Клиент</h3>
 <form method="post">
     <input type="hidden" value="Buyer" id="typeForm" />
-    <input type="hidden" value=@ViewBag.Id name="dialId" />    
-    <input type="hidden" value=@ViewBag.type name="type" />    
+    <input type="hidden" value=@ViewBag.Id name="dialId" />
+    <input type="hidden" value=@ViewBag.type name="type" />
 
+    <div class="group-input bcg-white">
 
-    <input placeholder="Фамилия" name="LastName" type="text" id="lastname"/>
-    <input placeholder="Имя" name="FirstName" type="text" id="firstname" />
-    <input placeholder="Отчество" name="Patronymic" type="text" id="patronymic" />
-    <input placeholder="Телефон" name="Phone" type="tel" id="phone" />
-    <input placeholder="Паспорт" name="Passport" type="text" id="passport"/>
-    <select class="form-select" aria-label="default select example" id="CityId" name="CityId" style="width:100px">
-        @foreach (var c in ViewBag.Cities)
-        {
-            <option value=@c.Id>@c.Name</option>
-        }
-    </select>
-    <input placeholder="Адрес" name="Address" type="text" id="address"/>
+        <div class="input-box">
+            <label for="lastName" class="form-label">Фамилия</label>
+            <input class="form-control" id="lastName" type="text" name="LastName" placeholder="Фамилия" required />
+        </div>
+        <div class="input-box">
+            <label for="name" class="form-label">Имя</label>
+            <input class="form-control" id="name" type="text" name="FirstName" placeholder="Имя" required />
+        </div>
+        <div class="input-box">
+            <label for="patronymic" class="form-label">Отчество</label>
+            <input class="form-control" type="text" id="patronymic" name="Patronymic" placeholder="Отчество" />
+        </div>
+        <div class="input-box">
+            <label for="passport" class="form-label">Паспорт</label>
+            <input class="form-control" placeholder="Паспорт" name="Passport" type="text" id="passport" required />
+        </div>
+        <div class="input-box">
+            <label for="phone" class="form-label">Телефон</label>
+            <input class="form-control" id="phone" type="text" name="Phone" placeholder="Телефон" required />
+        </div>
+        <div>
+            <label for="CityId" class="form-label">Адрес</label>
+            <select class="form-control" aria-label="default select example" id="CityId" name="CityId">
+                @foreach (var c in ViewBag.Cities)
+                {
+                    <option value=@c.Id>@c.Name</option>
+                }
+            </select>
+        </div>
+        <div class="input-box">
+            <input class="form-control" placeholder="Адрес" name="Address" type="text" id="address" required />
+        </div>    
 
-    <hr />
+        <hr />
 
-    <button type="submit" disabled id="btnsave"> Сохранить </button>
+        <button class="btn btn-primary m-10 text-center" type="submit" id="btnsave"> Сохранить </button>
+    </div>
 </form>
 <script src="@Url.Content("~/Scripts/EditRealty.js")" type="text/javascript"></script>

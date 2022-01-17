@@ -1,66 +1,336 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-size: 18px !important;
+}
+
+.userName {
+    color: white;
+}
+
+.header-right {
+    position: relative;
+}
+
+.profileMenu {
+    display: none;
+    width: 180px;
+    left: -20px;
+    font-size: 17px;
+    padding: 10px 20px;
+    background-color: white;
+    border: 1px solid rebeccapurple;
+    -moz-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+}
+
+.profileMenu li {
+    list-style-type: none;
+}
+.profileMenu ul {
+    padding: 0;
+}
+
+.header-right:hover .profileMenu {
+    position: absolute;
+    top: 20px;
+    display: block;
+    z-index: 9999;
+}
+
+.link-header {
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+
+.m-10 {
+    margin: 10px
+}
+
+.bcg-white {
+    background-color: #fff;
+}
+
+.my-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
+    background-color: #eafbfd;
     padding-left: 15px;
     padding-right: 15px;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    min-height: 90vh;
+}
+.container {
+    padding: 10px;
+}
+.nav-link {
+    font-size: 18px
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
+table {
+    background-color: #eafbfd;
+    border-collapse: initial;
+}
+h3, .answer-content {
+    text-align: center;
+    margin: 30px 0;
+}
+textarea {
+    max-width: 560px;
+    min-width: 450px !important;
+}
+.group-btn {
+    display: flex;
+}
+.input-box {
+    font-size: 18px !important;
+    margin: 10px;
+}
+
+.select-group, .group-input {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+}
+
+.checkBox-group {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-check-input {
+    zoom: 1.5;
+}
+.wrapper {
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.footer {
+    margin-top: auto;
+} 
+
 .dl-horizontal dt {
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
+.form-control {
     max-width: 280px;
+    font-size: 18px !important;
 }
 
+select {
+    display: block;
+    max-width: 200px;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 18px;
+    line-height: 1.42857143;
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+}
+
+.carousel-control {
+    width: 5%;
+}
+.carousel-control .icon-next,
+.carousel-control .icon-prev {
+    font-size: 100px;
+}
+.carousel-indicators > button {
+    border: 2px solid #dadada;
+    border-radius: 18px;
+    width: 40px;
+    height: 9px;
+}
+.carousel-indicators > button.active {
+    border-radius: 18px;
+    width: 40px;
+    height: 9px;
+    outline: none;
+    border-color: #9ecaed;
+    box-shadow: 0 0 10px #9ecaed;
+}
+.carousel-img {
+    width: 100% !important;
+}
+.icon-header {
+    font-size: 37px;
+    color: #9d9d9d;
+}
+.icon-header:hover {
+    color: white;
+}
+.icon-act {
+    display: inline-block;
+    position: relative;
+}
+.icon-act:hover::after {
+    content:attr(data-title);
+    position: absolute; /* Абсолютное позиционирование */
+        left: -118px;
+    top: -14%;
+    z-index: 1; /* Отображаем подсказку поверх других элементов */
+    background: rgba(255,255,230,0.9); /* Полупрозрачный цвет фона */
+    font-family: Arial, sans-serif; /* Гарнитура шрифта */
+    font-size: 11px; /* Размер текста подсказки */
+    padding: 5px 10px; /* Поля */
+    border: 1px solid #333; /* Параметры рамки */
+}
+.btn-no-bcg{
+    background: none;
+    border: none;
+}
+.btn-header {
+    font-size: 15px;
+    height: 40px;
+    margin: 0 15px;
+    background-color: #2e6da4;
+    color: #fff;
+}
+.btn-header:hover {
+    color: #2e6da4;
+    border-color: blue;
+    background-color: #fff;
+}
+.form {
+    background-color: white;
+}
+.edit-form {
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    min-width: 800px;
+}
+.calculator {
+    display: flex;
+    justify-content: space-between;
+}
+.calculator-input, .calculator-output {
+    padding: 10px;
+    background-color: #fff;
+    min-width: 49.5%;
+    margin: 10px 0;
+    font-size: 20px;
+}
+.text-result{
+    background-color: #fff;
+    padding: 20px;
+}
 .realtyItem {
-    display: flex
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
 }
-.realtyItem_left{
-    width:60%
+.realtyItem__title {
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.realtyItem__title-max {
+    font-size: 25px;
+    font-weight: bold;
+    padding: 10px;
+}
+.realtyItem__address {
+    padding: 10px;
+    font-size: 20px;
+}
+.realtyItem__desc {
+}
+.realtyItem__img {
+    width: 300px;
+    max-height: 200px;
+}
+.realtyItem_left {
+    width: 70%;
+    margin: 10px 10px 0 0;
+    background-color: #fff;
+    padding: 15px;
+}
+.realtyItem_right {
+    width: 29%;
+    margin-top: 10px;
+    background-color: #fff;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.realtyItem__title {
-    font: bold 12px
+
+.realtyItem__description {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 50px;
+    background-color: #fff;
 }
 
 .realtyItem__desc_mini {
-    font-size: 10px
+    font-size: 15px
 }
 
 .realtyItem__price {
-    font: bold 14px
-
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
 }
+.price-block {
+    display: flex;
+    align-items: baseline;
+}
+
+.thead, .tbody {
+    text-align: center;
+    padding: 10px 30px;
+}
+.thead {
+    font-size: 25px;
+}
+.tbody {
+    color: #777;
+    font-weight: unset;
+}
+
 
 .slidecontainer {
-    width: 100%; /* Width of the outside container */
+    width: 100%; 
 }
-
 
 
 .slider {
-    width: 100%;
-    height: 15px;
-    border-radius: 5px;  
+    height: 20px;
+    border-radius: 5px;
     background: #d3d3d3;
     outline: none;
 }
 
 .slider::-webkit-slider-thumb {
     appearance: none;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%; 
     background: #4CAF50;
     cursor: pointer;
@@ -68,10 +338,13 @@ textarea {
 }
 
 .slider::-moz-range-thumb {
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
 }
 
+.account-link {
+    margin-bottom: 30px
+}

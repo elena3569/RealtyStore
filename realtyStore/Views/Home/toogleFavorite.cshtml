@@ -1,0 +1,14 @@
+﻿@model  realtyStore.Models.toggleParams
+<button class="btn-heart" id="@Model.id">
+    <i class="@(Model.isFavorite ? "fas" : "far") fa-heart"></i>
+</button>
+
+<style>
+    .btn-heart {
+        color: red;
+        background: none;
+        border: none;
+        outline: none;
+        font-size: 30px;
+    }
+</style>

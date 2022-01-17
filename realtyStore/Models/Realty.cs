@@ -21,6 +21,6 @@ namespace realtyStore.Models
         public int Price { get; set; }
         public string Description { get; set; }
         public int? RealtorId { get; set; }
-
+        public bool isFavorite { get; set; }
     }
 }

@@ -1,14 +1,30 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="viewport" content="width=device-width" />
-    <title>Ошибка</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Ошибка.</h1>
-        <h2>При обработке запроса произошла ошибка.</h2>
-    </hgroup>
-</body>
-</html>
+﻿
+@{
+    ViewBag.Title = "Internal Server error";
+    @model HandleErrorInfo
+}
+
+<h1>Произошла ошибка</h1>
+<p>Произошла внутренняя ошибка сервера в: @ViewBag.RequestedUrl</p>
+@if (ViewBag.ReferrerUrl != null) {
+<p>Вернуться к <a href="@ViewBag.ReferrerUrl">предыдущей странице</a>.</p>
+}
+
+<h3>Подробности</h3>
+<p>Контроллер: @Model.ControllerName</p>
+<p>Действие: @Model.ActionName</p>
+<p>Трассировка стека: </p>]
+
+@* This section shows the stack trace in an easier to read format. *@
+@foreach (string s in Model.Exception.StackTrace.Split(new[] {" at"}, StringSplitOptions.RemoveEmptyEntries))
+{
+    if (!string.IsNullOrWhiteSpace(s))
+    {
+        <code>at @s</code>
+        <br/>
+    }
+}
+
+@* Error page must be longer than 512 bytes for IE and Chrome to show it.
+        So add padding in case we're short. *@
+    @(new string(' ', 512))
